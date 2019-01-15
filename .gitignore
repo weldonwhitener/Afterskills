@@ -23,9 +23,6 @@ __pycache__/
 *.pyc
 __pycache__/
 
-!**/media/.keep
-/media/*
-
 
 .env
 db.sqlite3
