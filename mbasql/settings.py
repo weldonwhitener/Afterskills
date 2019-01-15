@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+EXPLORER_CONNECTIONS = {'default': 'default'}
+EXPLORER_DEFAULT_CONNECTION = 'default'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -26,7 +28,7 @@ SECRET_KEY = 'qdq4g2c0#ir=q(s6hc%a4^31(e5f)nh@8*5r&75&)65*%hx4&q'
 DEBUG = False
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['www.mbasql.com']
+ALLOWED_HOSTS = ['*']
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 # Application definition
@@ -45,17 +47,15 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
 ]
 
-MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+MIDDLEWARE = [
+'django.middleware.security.SecurityMiddleware',
+'django.contrib.sessions.middleware.SessionMiddleware',
+'django.middleware.common.CommonMiddleware',
+'django.middleware.csrf.CsrfViewMiddleware',
+'django.contrib.auth.middleware.AuthenticationMiddleware',
+'django.contrib.messages.middleware.MessageMiddleware',
+'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'mbasql.urls'
 
 TEMPLATES = [
@@ -95,13 +95,13 @@ DATABASES = {
     'default': {
         'NAME': 'afterskills$mbasql',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'after skills',
+        'USER': 'afterskills',
         'PASSWORD': 'rickandmorty2019',
         'HOST': 'afterskills.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
         'OPTIONS': {
           'autocommit': True,
-          'init_command': "SET storage_engine=MYISAM",
+          'init_command': "SET default_storage_engine=MyISAM",
 
         },
     }

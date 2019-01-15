@@ -25,11 +25,11 @@ class ClassSettings(models.Model):
 
 # Create your models here.
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=256,blank=True,null=True,default=None)
     address = models.CharField(max_length=256,blank=True,null=True,default=None)
     show_slides = models.BooleanField(default=False)
-    slug       = models.SlugField(max_length=100, unique=True)
+    slug       = models.SlugField(max_length=100, unique=False)
     created     = models.DateTimeField(editable=False,default=now,blank=True,null=True)
     modified    = models.DateTimeField(default=now,blank=True,null=True)
 
@@ -54,7 +54,7 @@ def generate_product_image(self, filename):
     return url
 
 class Order(models.Model):
-    customer =  models.ForeignKey('UserProfile')
+    customer =  models.ForeignKey('UserProfile',on_delete=models.CASCADE)
     created     = models.DateTimeField(editable=False,default=now,blank=True,null=True)
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
@@ -63,8 +63,8 @@ class Order(models.Model):
         return super(Order, self).save(*args, **kwargs)
 
 class OrderItem(models.Model):
-    order =  models.ForeignKey('Order')
-    product =  models.ForeignKey('Product')
+    order =  models.ForeignKey('Order',on_delete=models.CASCADE)
+    product =  models.ForeignKey('Product',on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     created     = models.DateTimeField(editable=False,default=now,blank=True,null=True)
     def save(self, *args, **kwargs):
@@ -86,7 +86,7 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=300)
     description = models.TextField()
-    category =  models.ForeignKey('Category', blank=True, default=None)
+    category =  models.ForeignKey('Category', blank=True, default=None,on_delete=models.CASCADE)
     photo = models.ImageField(upload_to=generate_product_image,blank=True)
     manufacturer = models.CharField(max_length=300,blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -102,7 +102,7 @@ class Product(models.Model):
 
 
 class Cart(models.Model):
-    customer =  models.ForeignKey('UserProfile')
+    customer =  models.ForeignKey('UserProfile',on_delete=models.CASCADE)
     created     = models.DateTimeField(editable=False,default=now,blank=True,null=True)
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
@@ -114,8 +114,8 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
-    cart =  models.ForeignKey('Cart')
-    product =  models.ForeignKey('Product')
+    cart =  models.ForeignKey('Cart',on_delete=models.CASCADE)
+    product =  models.ForeignKey('Product',on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     created     = models.DateTimeField(editable=False,default=now,blank=True,null=True)
     def save(self, *args, **kwargs):
@@ -127,8 +127,8 @@ class CartItem(models.Model):
         return str(self.cart.customer) + '' + str(self.product.name)
 
 class Impression(models.Model):
-    product =  models.ForeignKey('Product')
-    user =  models.ForeignKey('UserProfile', blank=True, null=True, default=None)
+    product =  models.ForeignKey('Product',on_delete=models.CASCADE)
+    user =  models.ForeignKey('UserProfile', blank=True, null=True, default=None,on_delete=models.CASCADE)
     created     = models.DateTimeField(editable=False,default=now,blank=True,null=True)
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
@@ -140,8 +140,8 @@ class Impression(models.Model):
         return self.product.name
 
 class ProductDetail(models.Model):
- product = models.ForeignKey('Product', related_name='details')
- attribute = models.ForeignKey('ProductAttribute')
+ product = models.ForeignKey('Product', related_name='details',on_delete=models.CASCADE)
+ attribute = models.ForeignKey('ProductAttribute',on_delete=models.CASCADE)
  value = models.CharField(max_length=500)
  description = models.TextField(blank=True)
 

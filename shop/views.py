@@ -255,7 +255,7 @@ class LandingPage(View):
         params["class_settings"] = ClassSettings.objects.get(id=1)
 
         params['form'] = AuthenticationForm
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             return render(request,'landing_logged_in.html',params)
         else:
             return render(request,'landing.html',params)
@@ -273,7 +273,7 @@ class ProductDetailPage(View):
         params["class_settings"] = ClassSettings.objects.get(id=1)
 
         requestor = None
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             try:
                 requestor = UserProfile.objects.get(user=request.user.id)
             except:
