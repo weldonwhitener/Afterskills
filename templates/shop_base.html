@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block topnav %}
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header" style="width: 100%;">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'shop browse' %}">Shop</a>
+                                                <div class="collapse navbar-collapse ">
+                 <ul class="nav navbar-nav navbar-left">
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Categories
+                                    <b class="caret"></b>
+                              </a>
+                              <ul class="dropdown-menu">
+                                  {% for category in categories %}
+                                <li><a href="{% url 'category browse' category.slug %}">{{category.name}}</a></li>
+                                {% endfor %}
+                              </ul>
+                        </li>
+                        <li>
+                              <a href="#" id="cart-popover" data-toggle="popover" data-trigger="focus" title="Your cart" data-placement="bottom"  data-html="true"   data-target="#my-popover-content" >
+                              <i class="fa fa-shopping-cart  fa-fw" aria-hidden="true"></i>
+                    <span class="cart-items" id="items-in-cart">({{items_in_cart}})</span>
+                    </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                    </div>
+            </div>
+
+        </nav>
+{% endblock %}
+
+{% block js %}
+
+<script>
+$(document).ready(function(){
+$("[data-toggle='popover']").each(function(index, element) {
+    var contentElementId = $(element).data().target;
+    var contentHtml = $(contentElementId).html();
+    $(element).popover({
+        content: contentHtml,
+        trigger: "focus",
+    });
+});
+
+});
+</script>
+
+	 <script type="text/html" id="my-popover-content">
+      Are you ready to check out? <br/><br/>
+<a href="{% url 'cart' %}" class="btn btn-primary" type="submit">Go to cart</a>
+</script>
+
+{% block shop_js %}
+
+{% endblock %}
+{% endblock %}

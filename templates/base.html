@@ -1,0 +1,171 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+ <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>MBASQL.com</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="{% static 'consult/assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="{% static 'consult/assets/css/animate.min.css' %}" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="{% static 'consult/assets/css/light-bootstrap-dashboard.css' %}" rel="stylesheet"/>
+    <link href="{% static 'consult/assets/css/custom.css' %}" rel="stylesheet"/>
+
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="{% static 'consult/assets/css/pe-icon-7-stroke.css' %}" rel="stylesheet" />
+
+</head>
+<body>
+
+
+<div class="wrapper">
+    <div class="sidebar" data-color="navy" data-image="{% static 'consult/assets/img/sidebar-4.jpg' %}">
+    	<div class="sidebar-wrapper">
+                     <div class="logo" style="width: 100%;">
+                <a href="http://www.mbasql.com" class="simple-text">
+                <img src="{% static 'images/favicon-96x96.png' %}" height="28px" width="28px" />
+                <span style="display: inline-block; margin-left: 10px;">MBASQL</span>
+                </a>
+            </div>
+
+
+            <ul class="nav">
+                {% if request.user.userprofile.show_slides or class_settings.show_slides_today %}
+                <li class="{% if page == 'lessons' %} active {% endif %}">
+                    <a href="/lessons/">
+                        <i class="pe-7s-look"></i>
+                        <p>Watch - Lessons</p>
+                    </a>
+                </li>
+                {% endif %}
+
+                <li class="{% if page == 'shop' %} active {% endif %}">
+                    <a href="/shop/">
+                        <i class="pe-7s-play active"></i>
+                        <p>Play - Shop</p>
+                    </a>
+                </li>
+                                {% if request.user.is_authenticated %}
+
+
+                              <li class=" ">
+                    <a href="/explorer/play/">
+                        <i class="pe-7s-browser"></i>
+                        <p>Do - Playground</p>
+                    </a>
+                </li>
+                 <li class=" ">
+                    <a href="{% url 'logout' %}">
+                        <i class="pe-7s-power"></i>
+                        <p>Logout</p>
+                    </a>
+                </li>
+                <div class="margin-bottom-40"></div>
+
+                {% if class_settings.show_feedback_link %}
+                <li class=" ">
+                    <a href="{{class_settings.feedback_link}}">
+                        <i class="pe-7s-note2"></i>
+                        <p>Feedback</p>
+                    </a>
+                </li>
+                {% endif %}
+                {% if class_settings.show_udemy_link %}
+                <li class=" ">
+                    <a href="{{class_settings.udemy_link}}">
+                        <i class="pe-7s-study"></i>
+                        <p>Udemy - Free!</p>
+                    </a>
+                </li>
+                {% endif %}
+                {% if class_settings.show_udemy_discount_link %}
+                <li class=" ">
+                    <a href="{{class_settings.udemy_discount_link}}">
+                        <i class="pe-7s-like2"></i>
+                        <p>Udemy - Friend Discount</p>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if class_settings.show_slack_link %}
+                <li class=" ">
+                    <a href="{{class_settings.slack_link}}">
+                        <i class="pe-7s-comment"></i>
+                        <p>#Slack</p>
+                    </a>
+                </li>
+                {% endif %}
+
+
+{% endif %}
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        {% block topnav %}
+        {% endblock %}
+
+        <div class="content">
+            <div class="container-fixed">
+                <div class="row">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <p class="copyright pull-right">
+                    &copy; {% now 'Y' %} <a href="http://www.mbasql.com">MBASQL.com</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+
+    <!--   Core JS Files   -->
+    <script src="{% static 'consult/assets/js/jquery-1.10.2.js' %}" type="text/javascript"></script>
+	<script src="{% static 'consult/assets/js/bootstrap.min.js' %}" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="{% static 'consult/assets/js/bootstrap-checkbox-radio-switch.js' %}"></script>
+
+	<!--  Charts Plugin -->
+	<script src="{% static 'consult/assets/js/chartist.min.js' %}"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="{% static 'consult/assets/js/bootstrap-notify.js' %}"></script>
+
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="{% static 'consult/assets/js/light-bootstrap-dashboard.js' %}"></script>
+
+
+{% block js %}
+{% endblock %}
+</body>
+</html>

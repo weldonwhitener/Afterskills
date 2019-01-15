@@ -1,0 +1,661 @@
+{% load static %}
+{% load thumbnail %}
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+
+  <!-- If you'd like to support IE8 -->
+ <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>MBASQL.com</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="{% static 'consult/assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="{% static 'consult/assets/css/animate.min.css' %}" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="{% static 'consult/assets/css/light-bootstrap-dashboard.css' %}" rel="stylesheet"/>
+    <link href="{% static 'consult/assets/css/custom.css' %}" rel="stylesheet"/>
+
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="{% static 'consult/assets/css/pe-icon-7-stroke.css' %}" rel="stylesheet" />
+
+</head>
+
+<body style="padding-top: 60px;">
+    <nav class="navbar navbar-default navbar-fixed-top" style="margin-bottom: 0px; background: #176082; border-bottom: 3px solid #ddded7;">
+      <div class="container-fluid" style=" ">
+        <div class="navbar-header" style="width: 100%;" >
+            <a href="http://www.mbasql.com" >
+                <img src="{% static 'images/favicon-96x96.png' %}" height="50px" width="50px" style="margin: 10px;" />
+            </a>
+            <h5 style="font-weight: bold; color: #DDDED7; display: inline-block; font-size: 18px;">MBA SQL</h5>
+
+            <div class="pull-right">
+                <a href="login" style="font-weight: bold; line-height: 70px; margin-right: 20px; color: #DDDED7;">Login</a>
+            </div>
+
+             <div class="pull-right">
+                <a href="login" style="font-weight: bold; line-height: 70px; margin-right: 20px; color: #DDDED7;">Register</a>
+            </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron" style="border-bottom: 3px solid #ddded7; background: #dedede; background: repeating-linear-gradient(-55deg,#DDDED7,#DDDED7 5px,#EEE 5px,#EEE 10px); background: url('{% static '/images/lgback.jpg' %}') 50% 50%; padding-bottom: 20px;">
+        <div class="row" style="margin: 0px; padding: 0;">
+            <div class="col-sm-5 col-sm-push-1 " style="margin-top: 0px; padding-top: 0; padding-bottom: 0px;">
+                <div>
+                                                {% thumbnail "http://www.mbasql.com/static/images/holder.png" "500x250" crop="center" format="PNG" as im %}
+
+<img src ="{{im.url}}" style="float: left; width: 100%; border-radius: 5px; margin-top: 15px; margin-bottom: 10px;"
+alt="MBASQL.com">
+
+{% endthumbnail %}
+                </div>
+                <p style="line-height: 45px; padding: 5px;padding-top: 15px; padding-right: 20px; text-align: justify;">
+                    MBASQL is
+                    <span style="color: #ddded7; background: #176082; padding: 5px;">for professionals</span>
+                    looking for or are currently in
+                    <span style="color: #ddded7; background: #176082; padding: 5px;">tech, consulting & finance.</span>
+                    MBASQL was
+                   designed using a  <span style="color: #ddded7; background: #176082; padding: 5px;">tried method</span>
+                   that will step up your SQL skills.
+                   {% comment %} Watch our short <span style="color: #ddded7; background: #176082; padding: 5px;">video
+                    for a tour</span> of what you can expect to learn. {% endcomment %}
+                </p>
+                <br/>
+                {% comment %}  Ready? &nbsp;&nbsp;Contact us! <a href="#contact-us" id="contact-us-leader" class="btn btn-primary" role="button" style="background-color: #176082!important; border-color: #176082!important">Contact us</a> {% endcomment %}
+            </div>
+
+                 <div class="col-xs-12 col-sm-5 col-sm-pull-1 col-md-5 col-md-pull-1 card card-plain pull-right">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Get in touch</h3>
+                </div>
+
+                <div class="panel-body">
+                          <div class="contact-form ">
+                              <style>
+
+                              .success
+                              {
+                                  color: darkgreen;
+
+                              }
+                              .danger
+                              {
+                                  color: red;
+                              }
+                              textarea
+                    {
+                    border: 1px solid #dedede;
+                    width: 100%;
+
+                    }
+                    input
+                    {
+                        width: 100%;
+                    }
+                    </style>
+                <form method="post" action="." enctype="multipart/form-data" id="contact-us-form" class="sky-form borderless">
+                    {% csrf_token %}
+                    {% for field in contact_form %}
+
+                    <div class="row" style="margin-bottom: 1px;">
+                        <div class="col-xs-6"><label>{{field.label}}</label></div>
+                        <div class="col-xs-6">{{field}}</div>
+                        </div>
+                    {% endfor %}
+
+</form>
+                </div>
+
+                </div>
+                <div class="panel-footer" style="text-align: right">
+                    <div style="text-align: left" class="pull-left contact_message"></div>
+                    <a href="#" class="btn btn-primary contact_us" role="button">Send</a></div>
+            </div>
+        </div>
+
+{% comment %}
+            <div class="col-xs-12 col-md-5 col-md-pull-1 card card-plain pull-right" style="">
+
+<div class="videoWrapper">
+    <style>.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}</style>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/G9B8QRuRHKk" frameborder="0" allowfullscreen></iframe>
+</div>
+            </div>
+            {% endcomment %}
+
+        </div>
+    </div>
+
+<div class="container content">
+ <h3 class="text-center">
+Testimonials
+</h3>
+
+    <div class='row'>
+        <div class='col-md-offset-1 col-md-10'>
+            <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                <!-- Bottom Carousel Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#quote-carousel" data-slide-to="1"></li>
+                  <li data-target="#quote-carousel" data-slide-to="2"></li>
+                  <li data-target="#quote-carousel" data-slide-to="3"></li>
+                  <li data-target="#quote-carousel" data-slide-to="4"></li>
+                 </ol>
+
+                <!-- Carousel Slides / Quotes -->
+                <div class="carousel-inner">
+                  <!-- Quote 1 -->
+                  <div class="item active">
+                    <blockquote>
+                      <div class="row">
+                        <div class="col-sm-3 text-center">
+                            {% thumbnail "http://www.mbasql.com/static/images/006-people.png" "100x100" crop="center" format="PNG" as im %}
+                                <img src ="{{im.url}}" class="img-circle " style="margin: auto; width: 100px;height:100px"  >
+                            {% endthumbnail %}
+                        </div>
+                        <div class="col-sm-9">
+                          <p>Thanks again for a great session today! I learned a lot</p>
+                          <small> MBA Student</small>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                  <!-- Quote 2 -->
+                  <div class="item">
+                    <blockquote>
+                      <div class="row">
+                        <div class="col-sm-3 text-center">
+                            {% thumbnail "http://www.mbasql.com/static/images/002-student-2.png" "100x100" crop="center" format="PNG" as im %}
+                                <img src ="{{im.url}}" class="img-circle " style="margin: auto; width: 100px;height:100px"  >
+                            {% endthumbnail %}
+                        </div>
+                        <div class="col-sm-9">
+                          <p>You two really made a plain subject interesting!</p>
+                          <small>MBA Student</small>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                  <!-- Quote 3 -->
+                  <div class="item">
+                    <blockquote>
+                      <div class="row">
+                        <div class="col-sm-3 text-center">
+                            {% thumbnail "http://www.mbasql.com/static/images/008-student.png" "100x100" crop="center" format="PNG" as im %}
+                                <img src ="{{im.url}}" class="img-circle " style="margin: auto; width: 100px;height:100px"  >
+                            {% endthumbnail %}
+                        </div>
+                        <div class="col-sm-9">
+                          <p>As a complete beginner I gained a lot and am now more confident in working with SQL after your the training.</p>
+                          <small> MBA Student</small>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+
+
+
+
+                  <!-- Quote 4 -->
+                  <div class="item">
+                    <blockquote>
+                      <div class="row">
+                        <div class="col-sm-3 text-center">
+                            {% thumbnail "http://www.mbasql.com/static/images/006-people.png" "100x100" crop="center" format="PNG" as im %}
+                                <img src ="{{im.url}}" class="img-circle " style="margin: auto; width: 100px;height:100px"  >
+                            {% endthumbnail %}
+                        </div>
+                        <div class="col-sm-9">
+                          <p>I haven’t learned SQL before... and I really learned a lot through this workshop!</p>
+                          <small> MBA Student</small>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                   <!-- Quote 5 -->
+                  <div class="item">
+                    <blockquote>
+                      <div class="row">
+                        <div class="col-sm-3 text-center">
+                            {% thumbnail "http://www.mbasql.com/static/images/008-student.png" "100x100" crop="center" format="PNG" as im %}
+                                <img src ="{{im.url}}" class="img-circle " style="margin: auto; width: 100px;height:100px"  >
+                            {% endthumbnail %}
+                        </div>
+                        <div class="col-sm-9">
+                          <p>Thank you for the very insightful and amazing platform to learn SQL.</p>
+                          <small> MBA Student</small>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+
+
+
+
+
+
+                </div>
+        <!-- Carousel Buttons Next/Prev -->
+        <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+        <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
+      </div>
+    </div>
+    </div>
+
+       <div class="margin-bottom-100">&nbsp;</div>
+
+
+ <h3 class="text-center">
+What do we cover?
+</h3>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <div class="margin-bottom-20">&nbsp;</div>
+            <div class="row">
+                <div class="col-sm-1 margin-bottom-20" style="text-align: justify;">
+                    {% thumbnail "http://www.mbasql.com/static/images/lessons-start.png" "100" crop="center" format="PNG" as im %}
+                        <img src ="{{im.url}}"  style="margin: auto; height: 50px; width: 50px;" >
+                    {% endthumbnail %}
+                    </div>
+                <div class="col-sm-11" style="text-align: justify; line-height: 50px;"><strong>Introduction</strong> we will start by learning how all queries are structured and write our first query .</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-1 margin-bottom-20" style="text-align: justify;">
+                    {% thumbnail "http://www.mbasql.com/static/images/lessons-aggregates.png" "100" crop="center" format="PNG" as im %}
+                        <img src ="{{im.url}}"  style="margin: auto; height: 50px; width: 50px;" >
+                    {% endthumbnail %}
+                    </div>
+                <div class="col-sm-11" style="text-align: justify; line-height: 50px;"><strong>Aggregation</strong> we will learn how we can transform, aggregate, group, and sort data we extract.</div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-1 margin-bottom-20" style="text-align: justify;">
+                    {% thumbnail "http://www.mbasql.com/static/images/lessons-filtering.png" "100" crop="center" format="PNG" as im %}
+                        <img src ="{{im.url}}"  style="margin: auto; height: 50px; width: 50px;" >
+                    {% endthumbnail %}
+                    </div>
+                <div class="col-sm-11" style="text-align: justify; line-height: 50px;"><strong>Filtering</strong> we will learn how to include and exclude data based on different criteria we set</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1 margin-bottom-20" style="text-align: justify;">
+                    {% thumbnail "http://www.mbasql.com/static/images/lessons-advanced.png" "100" crop="center" format="PNG" as im %}
+                        <img src ="{{im.url}}"  style="margin: auto; height: 50px; width: 50px;" >
+                    {% endthumbnail %}
+                    </div>
+                <div class="col-sm-11" style="text-align: justify; line-height: 50px;"><strong>Advanced</strong> we will learn how to join data from different tables, use query results as tables, and handle timeseries data.</div>
+            </div>
+
+        </div>
+    </div>
+
+            <div class="margin-bottom-100">&nbsp;</div>
+
+
+    <h3 class="text-center">
+Our Method
+</h3>
+                <div class="margin-bottom-20">&nbsp;</div>
+
+<p class="text-center"></p>
+    <div class="row">
+        <div class="col-md-10 col-md-push-1">
+            <div class="margin-bottom-20">&nbsp;</div>
+            <div class="row">
+                <div class="col-sm-4" style="text-align: justify;">
+                    {% thumbnail "http://www.mbasql.com/static/images/002-visibility.png" "150" crop="center" format="PNG" as im %}
+                        <img src ="{{im.url}}" class="img-responsive" style="margin: auto;" >
+                    {% endthumbnail %}
+                    <br/>
+                    <h3>Watch</h3>
+                    <p>Every lesson starts with an introduction to a new concept in SQL where we will cover the theoretical aspects of a specific functionality.</p>
+                </div>
+                <div class="col-sm-4" style="text-align: justify;">
+                    {% thumbnail "http://www.mbasql.com/static/images/004-pacman.png" "150" crop="center" format="PNG" as im %}
+                        <img src ="{{im.url}}" class="img-responsive " style="margin: auto;"  >
+                    {% endthumbnail %}
+                    <br/>
+                    <h3>Play</h3>
+                    <p>You will then put on the hat of a retail store manager and be invited to think about how each concept can be used in a business setting.</p>
+                </div>
+                <div class="col-sm-4 pull-right" style="text-align: justify;">
+                    {% thumbnail "http://www.mbasql.com/static/images/003-compose.png" "150" crop="center" format="PNG" as im %}
+                        <img src ="{{im.url}}" class="img-responsive" style="margin: auto;"  >
+                    {% endthumbnail %}
+                    <br/>
+                    <h3>Do</h3>
+                    <p>Once we have completed an example, you will be challenged with a problem you must solve. We will then present the solution and discuss.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <div class="margin-bottom-100">&nbsp;</div>
+
+<h3 class="text-center">What do you get?</h3>
+            <div class="margin-bottom-20">&nbsp;</div>
+    <div class="row">
+        <div class="col-xs-12 col-md-4 col-md-offset-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        MBA Students</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="the-price">
+                        <h1 class="text-center">
+                        <span class="subscript "><small></small></span></h1>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>
+                                {% thumbnail "http://www.mbasql.com/static/images/success.png" "50" crop="center" format="PNG" as im %}
+                                    <img src ="{{im.url}}"  style="margin: auto; height: 20px; width: 20px;" >
+                                {% endthumbnail %}&nbsp;&nbsp;
+                                6 hours of in-class lectures
+                            </td>
+                        </tr>
+                        <tr class="active">
+                            <td>
+                                {% thumbnail "http://www.mbasql.com/static/images/success.png" "50" crop="center" format="PNG" as im %}
+                                    <img src ="{{im.url}}"  style="margin: auto; height: 20px; width: 20px;" >
+                                {% endthumbnail %}&nbsp;&nbsp;
+                                6-month access to materials
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {% thumbnail "http://www.mbasql.com/static/images/success.png" "50" crop="center" format="PNG" as im %}
+                                    <img src ="{{im.url}}"  style="margin: auto; height: 20px; width: 20px;" >
+                                {% endthumbnail %}&nbsp;&nbsp;
+                                6-month access to tools
+                            </td>
+                        </tr>
+                        <tr class="active">
+                            <td>
+                                {% thumbnail "http://www.mbasql.com/static/images/success.png" "50" crop="center" format="PNG" as im %}
+                                    <img src ="{{im.url}}"  style="margin: auto; height: 20px; width: 20px;" >
+                                {% endthumbnail %}&nbsp;&nbsp;
+                                Support on #Slack channel
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Enterprise Course</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="the-price">
+                        <h1 class="text-center">
+                            <span class="subscript "><small></small></span></h1>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>
+                                {% thumbnail "http://www.mbasql.com/static/images/success.png" "50" crop="center" format="PNG" as im %}
+                                    <img src ="{{im.url}}"  style="margin: auto; height: 20px; width: 20px;" >
+                                {% endthumbnail %}&nbsp;&nbsp;
+                                8 hours of in-class lectures
+                            </td>
+                        </tr>
+                        <tr class="active">
+                            <td>
+                                {% thumbnail "http://www.mbasql.com/static/images/success.png" "50" crop="center" format="PNG" as im %}
+                                    <img src ="{{im.url}}"  style="margin: auto; height: 20px; width: 20px;" >
+                                {% endthumbnail %}&nbsp;&nbsp;
+                                12-month access to materials
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {% thumbnail "http://www.mbasql.com/static/images/success.png" "50" crop="center" format="PNG" as im %}
+                                    <img src ="{{im.url}}"  style="margin: auto; height: 20px; width: 20px;" >
+                                {% endthumbnail %}&nbsp;&nbsp;
+                                12-month access to tools
+                            </td>
+                        </tr>
+                        <tr class="active">
+                            <td>
+                                {% thumbnail "http://www.mbasql.com/static/images/success.png" "50" crop="center" format="PNG" as im %}
+                                    <img src ="{{im.url}}"  style="margin: auto; height: 20px; width: 20px;" >
+                                {% endthumbnail %}&nbsp;&nbsp;
+                                Private Enterprise Online Channel
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+      <div class="margin-bottom-100">&nbsp;</div>
+{% comment %}
+<h3 class="text-center" id="contact-us">Contact Us</h3>
+            <div class="margin-bottom-20">&nbsp;</div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-4 col-md-offset-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Get in touch</h3>
+                </div>
+
+                <div class="panel-body">
+                          <div class="contact-form ">
+                              <style>
+
+                              .success
+                              {
+                                  color: darkgreen;
+
+                              }
+                              .danger
+                              {
+                                  color: red;
+                              }
+                              textarea
+                    {
+                    border: 1px solid #dedede;
+                    width: 100%;
+
+                    }
+                    input
+                    {
+                        width: 100%;
+                    }
+                    </style>
+                <form method="post" action="." enctype="multipart/form-data" id="contact-us-form" class="sky-form borderless">
+                    {% csrf_token %}
+                    {% for field in contact_form %}
+
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-xs-6"><label>{{field.label}}</label></div>
+                        <div class="col-xs-6">{{field}}</div>
+                        </div>
+                    {% endfor %}
+
+</form>
+                </div>
+
+                </div>
+                <div class="panel-footer" style="text-align: right">
+                    <div style="text-align: left" class="pull-left contact_message"></div>
+                    <a href="#" class="btn btn-primary contact_us" role="button">Send</a></div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endcomment %}
+</div>
+ <footer class="footer" style="">
+            <div class="container-fluid">
+                <p class="copyright pull-right">
+                    &copy; {% now "Y" %} <a href="http://www.mbasql.com">MBASQL.com</a>
+                </p>
+            </div>
+        </footer>
+
+
+
+    <!--   Core JS Files   -->
+    <script src="{% static 'consult/assets/js/jquery-1.10.2.js' %}" type="text/javascript"></script>
+	<script src="{% static 'consult/assets/js/bootstrap.min.js' %}" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="{% static 'consult/assets/js/bootstrap-checkbox-radio-switch.js' %}"></script>
+
+	<!--  Charts Plugin -->
+	<script src="{% static 'consult/assets/js/chartist.min.js' %}"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="{% static 'consult/assets/js/bootstrap-notify.js' %}"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="{% static 'consult/assets/js/light-bootstrap-dashboard.js' %}"></script>
+
+
+{% block js %}
+{% endblock %}
+
+<script>
+
+
+// Add scrollspy to <body>
+$('body').scrollspy({target: "body", offset: 50});
+
+// Add smooth scrolling on all links inside the navbar
+$("#contact-us-leader").on('click', function(event) {
+
+
+  // Make sure this.hash has a value before overriding default behavior
+  if (this.hash !== "") {
+
+    // Prevent default anchor click behavior
+    event.preventDefault();
+
+    // Store hash
+    var hash = this.hash;
+
+    // Using jQuery's animate() method to add smooth page scroll
+    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 800, function(){
+
+    // Add hash (#) to URL when done scrolling (default click behavior)
+      window.location.hash = hash;
+    });
+
+  } // End if
+
+});
+
+
+  $('.contact_us').on('click',function(event){
+
+event.preventDefault();
+var thisBtn = $(this)
+ thisBtn.attr("disabled", true);
+    thisBtn.html('Sending &nbsp;<i class="fa  fa-circle-o-notch fa-spin "></i>&nbsp;');
+
+
+    var formsub = $('#contact-us-form').serializeArray();
+    formsub.push({
+        csrfmiddlewaretoken: '{{ csrf_token }}'
+    });
+
+
+    $.ajax({
+        url: '/contact/',
+        type: 'POST',
+        data: formsub,
+        dataType: "json",
+        success: function(response) {
+
+            if (response.success == true) {
+ thisBtn.attr("disabled", false);
+        thisBtn.html('Send');
+                $('#contact-us-form')[0].reset();
+$('.contact_message').addClass('success');
+$('.contact_message').removeClass('danger');
+$('.contact_message').html('Message sent! <br/> We sent you a copy.');
+
+
+            } else {
+             thisBtn.attr("disabled", false);
+                thisBtn.html('Send');
+$('.contact_message').addClass('danger');
+$('.contact_message').removeClass('success');
+$('.contact_message').html('Oops! Something went wrong. <br/>Check your details.');
+
+
+            }
+
+        },
+        failure: function(response) {
+  thisBtn.attr("disabled", false);
+                thisBtn.html('Contact Us');
+$('.contact_message').addClass('danger');
+$('.contact_message').removeClass('success');
+$('.contact_message').html('Oops! Something went wrong. <br/>Check your details.');
+
+
+        }
+    });
+
+  });
+</script>
+
+</body>
+</html>

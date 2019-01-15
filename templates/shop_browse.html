@@ -1,0 +1,38 @@
+{% extends "shop_base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Browse Products</h4>
+            <p class="category">
+                <div class="crumbs">
+                  <a href="{% url 'shop browse' %}">Shop</a>
+                </div>
+            </p>
+        </div>
+        <div class="content row">
+            {% for category,product in categories_products %}
+                <div class="col-md-4">
+                    <div class="frame">
+                      <a href="{% url 'category browse' category.slug %}" > {% thumbnail product.photo.file "150x150"  format="PNG" as im %}
+                            <img  style="vertical-align: middle;" src="{{im.url}}" alt="{{product.name}}">
+                        {% endthumbnail %}
+                        </a>
+                    </div>
+                    <div class="caption">
+                        <span class="title"><a href="{% url 'category browse' category.slug %} ">{{category.name}}</a></span>
+                        <br/>
+                        <p>{{category.description}}</p>
+                        <div><a href="{% url 'category browse' category.slug %} " class="btn btn-primary details-button" type="submit">Browse</a></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

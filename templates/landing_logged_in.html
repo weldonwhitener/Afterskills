@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+{% load static %}
+
+{% block topnav %}
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="navbar-brand" >Welcome back, {{user.first_name}}</span>
+                    </div>
+                <div class="collapse navbar-collapse">
+
+
+                </div>
+            </div>
+        </nav>
+{% endblock %}
+
+
+
+
+{% block content %}
+
+                <div class="col-md-12">
+                    <div class="margin-bottom-40">&nbsp;</div>
+    <div class="row">
+        <div class="col-md-10 col-md-push-1">
+            <div class="margin-bottom-20">&nbsp;</div>
+            <div class="row">
+                <div class="col-sm-4" style="text-align: justify;">
+                                        <a href="/lessons/">
+
+                    {% thumbnail "http://www.butamba.com/static/images/002-visibility.png" "150" crop="center" format="PNG" as im %}
+                        <img src ="{{im.url}}" class="img-responsive" style="margin: auto;" >
+                    {% endthumbnail %}
+                    </a>
+                    <br/>
+                    <h3>                                        <a href="/lessons/">
+Watch</a></h3>
+                    <p>Every lesson starts with an introduction to a new concept in SQL where we will cover the theoretical aspects of a specific functionality.</p>
+                </div>
+                <div class="col-sm-4" style="text-align: justify;">
+                    <a href="/shop/">
+                    {% thumbnail "http://www.butamba.com/static/images/004-pacman.png" "150" crop="center" format="PNG" as im %}
+                        <img src ="{{im.url}}" class="img-responsive " style="margin: auto;"  >
+                    {% endthumbnail %}
+                    </a>
+                    <br/>
+                    <h3>                    <a href="/shop/">
+Play</a></h3>
+                    <p>You will then put on the hat of a retail store manager and be invited to think about how each concept can be used in a business setting.</p>
+                </div>
+                <div class="col-sm-4 pull-right" style="text-align: justify;">
+                                         <a href="/explorer/play/">
+
+                    {% thumbnail "http://www.butamba.com/static/images/003-compose.png" "150" crop="center" format="PNG" as im %}
+                        <img src ="{{im.url}}" class="img-responsive" style="margin: auto;"  >
+                    {% endthumbnail %}
+                    </a>
+                    <br/>
+                    <h3>                                         <a href="/explorer/play/">
+Do</a></h3>
+                    <p>Once we have completed an example, you will be challenged with a problem you must solve. We will then present the solution and discuss.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+{% endblock %}
+

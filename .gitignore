@@ -1,0 +1,48 @@
+# Created by https://www.gitignore.io
+
+### OSX ###
+.DS_Store
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*__pycache__*
+*.py[cod]
+
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+!**/media/.keep
+/media/*
+
+
+.env
+db.sqlite3
+*.cert
+*.csr
+*.key
+*.sh
+db*.json
+static/CACHE/*
+*.pyc
+*.pyo
+*.mo
+*~
+
+uwsgi.ini
+log/**
+!log/placeholder
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py

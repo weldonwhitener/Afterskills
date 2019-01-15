@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+{% load static %}
+
+{% block topnav %}
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'view slides' %}">Lessons</a>
+                    </div>
+                <div class="collapse navbar-collapse">
+
+
+                </div>
+            </div>
+        </nav>
+{% endblock %}
+
+
+
+
+{% block content %}
+
+                <div class="col-md-12">                <div class="card card-plain">
+    <div class="content row">
+
+        <div class="header">
+            <h4 class="title">Table of Contents</h4>
+            <p class="category">
+
+            </p>
+        </div>
+        <div class="margin-bottom-20">&nbsp;</div>
+            <div class="list-group">
+                <a href="#" id="lesson_one" class="lesson_link list-group-item" data-lesson='01'>Lesson 01 - Introduction</a>
+                <a href="#" id="lesson_two" class="lesson_link list-group-item" data-lesson='04'>Lesson 02 - Writing your First Query</a>
+                <a href="#" id="lesson_three" class="lesson_link list-group-item" data-lesson='05'>Lesson 03 - Where and Operands</a>
+                <a href="#" id="lesson_four" class="lesson_link list-group-item" data-lesson='06'>Lesson 04 - Aggregate Function</a>
+               <a href="#" id="lesson_five" class="lesson_link list-group-item" data-lesson='07'>Lesson 05 - Group By</a>
+                <a href="#" id="lesson_six" class="lesson_link list-group-item" data-lesson='08'>Lesson 06 - Order By</a>
+                <a href="#" id="lesson_seven" class="lesson_link list-group-item" data-lesson='09'>Lesson 07 - CASE statements</a>
+                <a href="#" id="lesson_eight" class="lesson_link list-group-item" data-lesson='10'>Lesson 08 - Like</a>
+                <a href="#" id="lesson_nine" class="lesson_link list-group-item" data-lesson='11'>Lesson 09 - Having</a>
+                <a href="#" id="lesson_ten" class="lesson_link list-group-item" data-lesson='12'>Lesson 10 - Joins</a>
+                <a href="#" id="lesson_eleven" class="lesson_link list-group-item" data-lesson='13'>Lesson 11 - Nested Queries</a>
+                <a href="#" id="lesson_twelve" class="lesson_link list-group-item" data-lesson='14'>Lesson 12 - Dates</a>
+                <a href="#" id="lesson_end" class="lesson_link list-group-item" data-lesson='15'>End</a>
+
+
+            </div>
+            </div>
+    </div>
+    <div class="margin-bottom-40 visible-sm">&nbsp;</div>
+
+
+    </div>
+{% endblock %}
+
+{% block js %}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close &times;</button>
+                 <h4 class="modal-title" id="modal-title">Contact Us</h4>
+
+            </div>
+            <div class="modal-body no-footer" id="modal-body">
+
+            </div>
+            {% comment %}
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+
+            </div>
+            {% endcomment %}
+        </div>
+    </div>
+</div>
+
+<script>
+  $('.lesson_link').on('click',function(){
+      var lesson_id = $(this).attr('data-lesson')
+      var lesson_title = $(this).html()
+      $('#myModal .modal-title').html(''+lesson_title)
+    $('#myModal .modal-body').html('<iframe src="/slides/'+lesson_id+'/" frameborder="0" style="overflow:hidden;height:95%;width:100%" height="95%" width="100%"></iframe>');
+    $('#myModal').modal('show');
+
+  });
+</script>
+{% endblock %}

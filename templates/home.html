@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+{% block header %}
+{% if not request.user.is_authenticated %}
+<header class="jumbotron hero-spacer">
+            <h1>Hello!</h1>
+            <p>Welcome to MBASQL.com - the SQL course designed by and for MBA students. To start, you will need to register to Big Duck Furniture - our (pretend) online store.</p>
+            <p><a class="btn btn-primary btn-large" href="{% url 'login' %}">Register!</a>
+            </p>
+        </header>
+        {% else %}
+                    <h1>What next?</h1>
+<br/>
+        {% endif %}
+{% endblock %}
+{% block fullcontent %}
+
+
+    <div class="row text-center">
+
+            <div class="col-md-4 col-sm-4 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://www.en-taksi.gr/media/images/articles/tmimata-en-taksi.JPG" alt="">
+                    <div class="caption">
+                        <h3>Watch</h3>
+                        <p>We set up tutorials and lessons to take you through all the fundamental SQL concepts an MBA needs to know to be successful. </p>
+                        <p><br/>
+                            <a href="/lessons/" class="btn btn-primary">Watch Now</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://www.vertabelo.com/_file/blog/database-model-for-an-online-store/buy-now-button.jpg" alt="">
+                    <div class="caption">
+                        <h3>Play</h3>
+                        <p>Use our pretend online shopping site. You will later use your MBA knowledge and SQL skills to get data that can help your business decision making. </p>
+<p><br/>                            <a href="/shop/" class="btn btn-primary">Shop Now</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 hero-feature">
+                <div class="thumbnail">
+                    <img src="https://blog-academy.vertabelo.com/wp-content/uploads/2016/10/learn-sql-and-databases.png" alt="">
+                    <div class="caption">
+                        <h3>Do</h3>
+                       <p>Use our online SQL playground to practice concepts you learned from our tutorials, and extract data from your shopping experience.</p>
+ <p><br/>
+                            <a href="/explorer/" class="btn btn-primary">Do it!</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- /.row -->
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

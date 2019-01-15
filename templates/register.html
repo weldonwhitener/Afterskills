@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block content %}
+    <div class="row">
+
+        {% if request.user.is_staff %}
+
+        <div class="col-md-6 col-md-pull-1">
+            <div class="headline">Register</div>
+
+            <form action="." method="post" id="cart-form">
+                {% csrf_token %}
+                {{registration_form.as_p}}
+            <div class="pull-left" style="margin-left: 10px;" ><button class="btn btn-primary" id="update-quantities-btn" name="update" type="submit">Register</button></div>
+            </form>
+        </div>
+        {% endif %}
+
+
+        <div class="col-md-6 col-md-push-3">
+            <div class="headline">Login</div>
+
+            <form action="." method="post" id="cart-form">
+                {% csrf_token %}
+                {{form.as_p}}
+            <div class="pull-left" style="margin-left: 10px;" ><button class="btn btn-primary" id="update-quantities-btn" name="update" type="submit">Register</button></div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

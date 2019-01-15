@@ -1,0 +1,41 @@
+{% extends "shop_base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Your Cart</h4>
+            <p class="category">
+                <div class="crumbs">
+                    <a href="{% url 'shop browse' %}">Shop</a>
+                </div>
+            </p>
+        </div>
+        <div class="content row">
+            <div class="col-md-12">
+
+            <h4>Thank you for your order! <br/><a href="{% url 'shop browse' %}">Do you want to continue shopping?</a></h4><Br/>
+            <h4>Order ID: {{order.id}}</h4>
+            <ul style="list-style:none;">
+                {% for item in order_items %}
+                <li>
+                    {% thumbnail item.product.photo.file "75x75"  format="PNG" as im %}
+                    <img class="img-responsive pull-left" style="  margin-right: 40px; vertical-align: middle;" src="{{im.url}}" alt="{{product.name}}">
+                    {% endthumbnail %}
+                    {{item.product.name}}<br/>
+                    <label>Quantity:</label> &nbsp;{{item.quantity}}
+                    <div class="margin-bottom-40" style="clear:both"></div>
+                </li>
+                {% endfor %}
+            </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

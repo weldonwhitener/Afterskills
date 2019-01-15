@@ -1,0 +1,111 @@
+{% extends "shop_base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block content %}
+{% spaceless %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Browse Products</h4>
+            <p class="category">
+
+                <div class="crumbs">
+                    <a href="{% url 'shop browse' %}">Shop</a>&nbsp;>&nbsp;
+                    <a href="{% url 'category browse' product.category.slug %}">{{product.category.name}}</a>&nbsp;>&nbsp;
+                    <a href="{% url 'product detail page' product.id %}">{{product.name}}</a>
+                </div>
+            </p>
+        </div>
+        <div class="content row">
+            <div class="col-md-4">
+                {% thumbnail product.photo.file "300x300"  format="PNG" as im %}
+                <img class="img-responsive" style="    vertical-align: middle;" src="{{im.url}}" alt="{{product.name}}">
+                {% endthumbnail %}
+            </div>
+            <div class="col-md-6 col">
+                <div class="caption-full">
+                    <h5 class="pull-right">{{product.currency}}{{product.price}}</h5>
+                    <h4><a href="#">{{product.name}}</a></h4>
+                    <h5>by {{product.manufacturer}}</h5>
+                    <ul>
+                        {% if product.bullet_point_a %} <li>{{product.bullet_point_a}}</li> {% endif %}
+                        {% if product.bullet_point_b %} <li>{{product.bullet_point_b}}</li> {% endif %}
+                        {% if product.bullet_point_c %} <li>{{product.bullet_point_c}}</li> {% endif %}
+                        {% if product.bullet_point_d %} <li>{{product.bullet_point_d}}</li> {% endif %}
+                        {% if product.bullet_point_e %} <li>{{product.bullet_point_e}}</li> {% endif %}
+                    </ul>
+                </div>
+                <div>
+                    <div class="margin-bottom-40"></div>
+                    <div class="pull-right" >
+                        <button class="btn btn-primary" id="add-to-cart-btn" type="submit">Add to Cart</button>
+                        <br><div id="mini-message"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="margin-bottom-40"></div>
+                <h4>Product Description</h4>
+                <p>{{product.description}}</p>
+            </div>
+            <div class="col-md-12">
+                <div class="margin-bottom-40"></div>
+                <h4>Product Details</h4>
+                <ul style="list-style: none">
+                    {% for detail in product_details %}
+                        <li><strong>{{detail.attribute}}</strong>:&nbsp;{{detail.value}}{{detail.attribute.measure}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endspaceless %}
+{% endblock %}
+
+{% block shop_js %}
+<script>
+    $('#add-to-cart-btn').on('click',function(){
+        $(this).html('Adding <i class="fa fa-circle-o-notch fa-spin"></i>');
+        $(this).attr("disabled", true);
+        $('#mini-message').html('')
+
+        $.ajax({
+            url: "{% url 'product add to cart' product.id %}",
+            type: 'POST',
+            data: {'csrfmiddlewaretoken':'{{ csrf_token }}'},
+            dataType: "json",
+            success: function(response){
+                if(response.success == true)
+                {
+                    $('#add-to-cart-btn').html('Add to Cart');
+                    $('#add-to-cart-btn').attr("disabled", false);
+                    $('#mini-message').html('<small class="success">saved!</small>')
+                    $('.cart-items').html('('+response.items+')')
+$("[data-toggle='popover']").each(function(index, element) {
+    var contentElementId = $(element).data().target;
+    var contentHtml = $(contentElementId).html();
+        $(element).popover('show');
+
+    $(element).popover({
+        content: contentHtml,
+        trigger: 'hover',
+    });
+});
+
+                }
+                if(response.success == false)
+                {
+                    $('#add-to-cart-btn').html('Add to Cart');
+                    $('#add-to-cart-btn').attr("disabled", false);
+                    $('#mini-message').html('<small class="failure">:( try again</small>')
+
+                }
+            },
+            failure: function(response){}
+        });
+
+    })
+</script>
+{% endblock %}

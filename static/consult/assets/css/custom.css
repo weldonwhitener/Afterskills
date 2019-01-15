@@ -1,0 +1,300 @@
+
+.margin-bottom-100
+{
+    clear: both;
+    margin-bottom: 40px;
+}
+video::-internal-media-controls-download-button {
+    display:none;
+}
+
+video::-webkit-media-controls-enclosure {
+    overflow:hidden;
+}
+
+video::-webkit-media-controls-panel {
+    width: calc(100% + 30px); /* Adjust as needed */
+}
+
+
+    /* carousel */
+#quote-carousel
+{
+  padding: 0 10px 30px 10px;
+  margin-top: 30px;
+}
+
+/* Control buttons  */
+#quote-carousel .carousel-control
+{
+  background: none;
+  color: #222;
+  font-size: 2.3em;
+  text-shadow: none;
+  margin-top: 30px;
+}
+/* Previous button  */
+#quote-carousel .carousel-control.left
+{
+  left: -12px;
+}
+/* Next button  */
+#quote-carousel .carousel-control.right
+{
+  right: -12px !important;
+}
+/* Changes the position of the indicators */
+#quote-carousel .carousel-indicators
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the color of the indicators */
+#quote-carousel .carousel-indicators li
+{
+  background: #c0c0c0;
+}
+#quote-carousel .carousel-indicators .active
+{
+  background: #333333;
+}
+#quote-carousel img
+{
+  width: 250px;
+  height: 100px
+}
+/* End carousel */
+
+.item blockquote {
+    border-left: none;
+    margin: 0;
+}
+
+.item blockquote img {
+    margin-bottom: 10px;
+}
+
+.item blockquote p:before {
+    content: "\f10d";
+    font-family: 'Fontawesome';
+    float: left;
+    margin-right: 10px;
+}
+
+
+
+/**
+  MEDIA QUERIES
+*/
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #quote-carousel
+    {
+      margin-bottom: 0;
+      padding: 0 40px 30px 40px;
+    }
+
+}
+
+/* Small devices (tablets, up to 768px) */
+@media (max-width: 768px) {
+
+    /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+
+    #quote-carousel .carousel-indicators {
+        bottom: -20px !important;
+    }
+    #quote-carousel .carousel-indicators li {
+        display: inline-block;
+        margin: 0px 5px;
+        width: 15px;
+        height: 15px;
+    }
+    #quote-carousel .carousel-indicators li.active {
+        margin: 0px 5px;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+ .modal-dialog {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100%!important;
+    width: 100%!important;
+    left: 0;
+    top: 0;
+}
+.modal-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border: none;
+}
+.modal-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.modal-body {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    font-size: 15px;
+    overflow: auto;
+    margin-bottom: 60px;
+    padding: 0 15px 0;
+    width: 100%;
+}
+.modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    padding: 10px;
+    background: #f1f3f5;
+}
+.no-footer{margin-bottom: 0px!important};
+
+.navbar-header
+{
+    width: 100%!important;
+}
+.popover
+{
+    margin-right: 10px!important;
+}
+#mini-message
+{
+    width: 100%;
+    text-align: center;
+
+}
+
+#mini-message .success
+{
+    color: green;
+}
+#mini-message .failure
+{
+    color: red;
+}
+
+    .frame {
+     height: 200px;
+     line-height: 200px;
+     text-align: left;
+     width: 100%;
+      border-radius: 5px;
+         background: #fff;
+
+
+}
+.frame img {
+    background: #3A6F9A;
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.caption .title
+{
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.caption .price
+{
+    color: #dd0000;
+    line-height:40px !important;
+}
+
+.card
+{
+    padding: 15px!important;
+}
+.caption
+{
+    height: 275px;
+    overflow: hidden;
+    background: #fff;
+    text-align: justify;
+}
+.caption p
+{
+        font-size: 13px!important;
+
+}
+
+.hero-feature .caption
+{
+    height: auto!important;
+}
+.details-button
+{
+    position: absolute;
+    bottom: 40px;
+}
+.headline
+{
+    font-size: 2em;
+    padding: 0;
+}
+.crumbs
+{
+        margin-bottom: 40px;
+
+}
+
+.margin-bottom-40
+{
+         margin-bottom: 40px;
+
+}
+
+.margin-bottom-20
+{
+         margin-bottom: 20px;
+
+}
+
+.shopping-cart-button
+    {
+        margin-top: 10px;
+        margin-right: 50px;
+    }
+
+
+    .details-button {
+    position: absolute;
+    bottom: 40px;
+}
+
+.btn-primary {
+    color: #fff!important;
+    background-color: #337ab7!important;
+    border-color: #2e6da4!important;
+}
+
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}

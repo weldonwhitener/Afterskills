@@ -1,0 +1,56 @@
+{% extends "shop_base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+
+
+{% block content %}
+<div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Browse Products</h4>
+                                <p class="category">
+                                <div class="crumbs">
+                                  <a href="{% url 'shop browse' %}">Shop</a> >
+                                    <a href="{% url 'category browse' current_category.slug %}">{{current_category}}</a>
+                                </div>
+                                </p>
+                            </div>
+                            <div class="content">
+
+
+    <div class="headline"></div>
+
+
+<div class="row">
+
+    {% for product in products %}
+    {% if product.id != 37 %}
+<div class="col-md-4">
+        <div class="frame">
+          <a href="{% url 'product detail page' product.id %} " > {% thumbnail product.photo.file "150x150"  format="PNG" as im %}
+                <img  style="vertical-align: middle;" src="{{im.url}}" alt="{{product.name}}">
+            {% endthumbnail %}
+            </a>
+        </div>
+        <div class="caption">
+            <span class="title"><a href="{% url 'product detail page' product.id %} ">{{product.name}}</a></span>
+            <br/>
+            <span class="price">{{product.currency}}&nbsp;{{product.price}}</span>
+            <p>{{product.description|truncatewords:'20'}}</p>
+            <div><a href="{% url 'product detail page' product.id %} " class="btn btn-primary details-button" type="submit">Details</a></div>
+        </div>
+
+</div>
+{% endif %}
+
+
+{% endfor %}
+</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+{% endblock %}

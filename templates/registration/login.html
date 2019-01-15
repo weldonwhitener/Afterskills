@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block topnav %}
+    <nav class="navbar navbar-default navbar-fixed">
+        <div class="container-fluid">
+            <div class="navbar-header" style="width: 100%;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'login' %}">Login</a>
+                <div class="collapse navbar-collapse"></div>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+    <div class="col-md-6">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Login</h4>
+            </div>
+            <div class="margin-bottom-20"></div>
+            <form action="/login/" method="post" class="row" id="cart-form">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="col-md-3 col-md-push-1"><label for="{{field.name}}">{{field.label}}</label></div>
+                <div class="col-md-7 col-md-push-1"><span class="pull-right">{{field}}</span></div>
+                <div class="margin-bottom-10">&nbsp;</div>
+            {% endfor %}
+                <div class="col-md-12">
+                    <span class="pull-right" style="margin-right: 40px;" ><button class="btn btn-primary" id="update-quantities-btn" name="update" type="submit">Login</button></span>
+                </div>
+            </form>
+            <div class="text-right" style="margin-right: 25px; margin-top: 20px;">
+                <a href="{% url 'password_reset' %}"><small>Forgot your details?</small></a>
+            </div>
+        </div>
+    </div>
+<div class="col-md-6 ">
+        {% comment %}
+
+    <div style="text-align: center">Registration is Closed</div>
+{% endcomment %}
+
+<div class="card">
+    <div class="header">
+        <h4 class="title">Registration</h4>
+    </div>
+    {% if errors %}
+    <br/>
+    <div class="text-center" style="color:red;">{{errors}}</div>
+    {% endif %}
+    <div class="margin-bottom-10">&nbsp;</div>
+    <form action="/register/" method="post" class="row"id="cart-form" >
+    {% csrf_token %}
+    {% for field in registration_form %}
+<div class="col-md-3 col-md-push-1"><label for="{{field.name}}">{{field.label}}</label></div>
+<div class="col-md-7 col-md-push-1"><span class="pull-right">{{field}}</span></div>
+<div class="margin-bottom-10">&nbsp;</div>
+
+
+{% endfor %}
+<div class="pull-right" style="margin-left: 10px;" >
+<span class="pull-right" style="margin-right: 50px;" ><button class="btn btn-primary" id="update-quantities-btn" name="update" type="submit">Register</button></span>
+
+</div>
+
+</form>
+</div>
+
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
