@@ -94,9 +94,10 @@ class RegisterUser(View):
                     email = form.cleaned_data['email'],
                     is_active = True
                 )
-                user.userprofile.save();
+                user.save()
                 logout(request)
                 user = authenticate(username=user.username, password=form.cleaned_data['password'])
+
                 login(self.request, user)
                 return redirect('shop browse')
             else:
@@ -206,8 +207,12 @@ class ViewCart(View):
                     pass
             return redirect('cart')
 
+# No change needed
 class AddProductToCart(View):
     def post(self,request,id):
+        # params = {'success':True,'items':0}
+        # mimetype = 'application/json'
+        # return HttpResponse(json.dumps(params), mimetype)
         if request.is_ajax():
             user = request.user
             try:

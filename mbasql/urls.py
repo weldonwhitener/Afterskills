@@ -39,7 +39,7 @@ urlpatterns = [
     url(r'^explorer/', include('explorer.urls')),
     url(r'^shop/', include('shop.urls')),
     url(r'^register/$', RegisterUser.as_view(), name='register'),
-    url(r'^login/$', login_forbidden(django.contrib.auth.views.LoginView.as_view()),{'extra_context': {'registration_form':RegistrationForm}}, name='login'),
+    url(r'^login/$', login_forbidden(django.contrib.auth.views.LoginView.as_view(extra_context={'registration_form':RegistrationForm})), name='login'),
     url(r'^logout/$', Logout.as_view(), name='logout'),
 
     url(r'^login/password/reset/$', PasswordResetView.as_view(), {'template_name': 'registration/password_reset.html'},name="password_reset"),

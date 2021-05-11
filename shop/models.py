@@ -1,15 +1,16 @@
 from django.db import models
 from django.utils.timezone import now as now
-from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+
+from django.contrib.auth.models import User
 
 from django.template.defaultfilters import slugify
 
-class Animal(models.Model):
-    species = models.CharField(max_length=256,blank=True,null=True,default=None)
-    breed = models.CharField(max_length=256,blank=True,null=True,default=None)
-    age = models.PositiveIntegerField()
-    name =  models.CharField(max_length=256,blank=True,null=True,default=None)
+# class Animal(models.Model):
+#     species = models.CharField(max_length=256,blank=True,null=True,default=None)
+#     breed = models.CharField(max_length=256,blank=True,null=True,default=None)
+#     age = models.PositiveIntegerField()
+#     name =  models.CharField(max_length=256,blank=True,null=True,default=None)
 
 
 class ClassSettings(models.Model):
