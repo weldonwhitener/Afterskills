@@ -20,6 +20,7 @@ from django.contrib.auth.forms import (
 )
 class Logout(View):
     def get(self, request):
+        # Save this line
         logout(request)
         return HttpResponseRedirect('/login/')
 
