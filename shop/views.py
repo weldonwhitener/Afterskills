@@ -95,7 +95,7 @@ class RegisterUser(View):
                     email = form.cleaned_data['email'],
                     is_active = True
                 )
-                user.save()
+                user.save() # WWW: This creates a the user -- so they can log in, fill baskets, etc so don't comment it out (I believe -- to check with Salem)
                 logout(request)
                 user = authenticate(username=user.username, password=form.cleaned_data['password'])
 
@@ -159,8 +159,9 @@ class ViewCart(View):
             except:
                 cart_items =  None
             try:
-                order = Order.objects.create(customer=customer)
-                order.save()
+                #order = Order.objects.create(customer=customer) # WWW: The .create() also writes to the database so need to comment this out as well
+                #order.save() # WWW: I think this is where it creates a new order in the shop_order table so may need to comment this out
+                order = None # WWW: I put this in because I commented out the .create() two lines above
             except:
                 order = None
             for item in cart_items:
@@ -168,8 +169,9 @@ class ViewCart(View):
                     quantity = item.quantity
                     order = order
                     product = item.product
-                    order_item = OrderItem.objects.create(product=product,quantity=quantity,order=order)
-                    order_item.save()
+                    #order_item = OrderItem.objects.create(product=product,quantity=quantity,order=order) # WWW: The .create alo rights to the database so need to comment this out as well
+                    #order_item.save() # WWW: I think this is where is creates a new line in the shop_orderitem table for each of the products (hence the loop) so commenting this out would stop that
+                    order = None # WWW: I put this in because I commented out the .create() two lines above
                     item.delete()
                 except:
                     pass
@@ -201,7 +203,7 @@ class ViewCart(View):
                 try:
                     quantity = request.POST.getlist('products['+str(item.id)+']')
                     item.quantity = quantity[0]
-                    item.save()
+                    item.save() # WWW: This is what puts all the products into the cart, if I comment this out then users won't be able to put products into the cart
                     if quantity[0] == '0':
                         item.delete()
                 except:
@@ -230,14 +232,14 @@ class AddProductToCart(View):
                         cart = Cart.objects.get(customer = customer)
                     except:
                         cart = Cart.objects.create(customer=customer)
-                        cart.save()
+                        cart.save() # WWW: I think this is for saving the cart to a user so don't want to comment this out
                     try:
                         cart_item = CartItem.objects.get(cart=cart,product=product)
                         cart_item.quantity = cart_item.quantity+1
-                        cart_item.save()
+                        cart_item.save() # WWW: I think this is for saving the various items saved in a cart to a cart (line above) so don't want to comment this out
                     except:
                         cart_item =  CartItem.objects.create(cart=cart,product=product,quantity=1)
-                        cart_item.save()
+                        cart_item.save() # WWW: Something to do with the cart just having 1 quantity or it is the first time you put this product in the cart so I don't want to comment this out
                     try:
                         items_in_cart = CartItem.objects.filter(cart=cart).aggregate(Sum('quantity'))
                     except:
@@ -278,16 +280,16 @@ class ProductDetailPage(View):
         params["page"] = "shop"
         params["class_settings"] = ClassSettings.objects.get(id=1)
 
-        requestor = None
+        requestor = None # WWW: This next block of code essentially checks if a user is logged in & to get the user id if they are, create one if not.  Since everyone would effectively be logged in this isn't a useful block of code if I'm commenting out the impression_instance lines
         if request.user.is_authenticated:
-            try:
+            try: #
                 requestor = UserProfile.objects.get(user=request.user.id)
             except:
                 requestor = UserProfile.objects.create(user=request.user)
-                requestor.save()
+                requestor.save() # WWW: Not sure abotu this one if its the impressions or not.  I think its allowing permission for viewing pages if you are signed in
 
-        impression_instance = Impression(product=product, user=requestor)
-        impression_instance.save()
+        # impression_instance = Impression(product=product, user=requestor) # WWW: Commented out based on Salem's steer
+        # impression_instance.save() # WWW: I think this is for the impression value so I could comment this out to stop impressions from ticking up
         return render(request,'product_detail_page.html',params)
 
 class ShopBrowse(View):
